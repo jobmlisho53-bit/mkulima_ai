@@ -1,5 +1,5 @@
 # Core ML and Data Science
-tensorflow==2.13.0
+tensorflow==2.18.0
 torch==2.0.1
 torchvision==0.15.2
 
