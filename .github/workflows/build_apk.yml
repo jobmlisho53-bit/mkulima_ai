@@ -15,32 +15,33 @@ jobs:
 
     defaults:
       run:
-        working-directory: mobile_app  # your app folder
+        working-directory: mobile_app  # Update if your app folder is different
 
     steps:
-      # 1. Checkout code
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Setup Flutter
+      # 2️⃣ Setup Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.38.5'  # pinned version to match Dart 3.8+
+          flutter-version: 3.38.5   # pinned to match Dart 3.8+
+          channel: stable
 
-      # 3. Run Flutter doctor
+      # 3️⃣ Run Flutter doctor
       - name: Flutter doctor
         run: flutter doctor -v
 
-      # 4. Install dependencies
+      # 4️⃣ Install dependencies (runtime only, dev_dependencies ignored)
       - name: Install dependencies
         run: flutter pub get
 
-      # 5. Build APK
+      # 5️⃣ Build APK
       - name: Build Release APK
         run: flutter build apk --release
 
-      # 6. Upload APK artifact
+      # 6️⃣ Upload APK artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
