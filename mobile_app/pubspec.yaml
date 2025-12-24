@@ -112,12 +112,8 @@ dev_dependencies:
 
   build_runner: ^2.10.4
   retrofit_generator: ^10.2.1
-  json_serializable: ^6.11.3
   freezed: ^3.2.3
-flutter:
-  uses-material-design: true
-  generate: true  # Enable if using official ARB files (gen-l10n); safe to keep even with flutter_localization
-
+  json_serializable: 6.10.0
   assets:
     - assets/images/
     - assets/models/mkulima_ai_model.tflite
