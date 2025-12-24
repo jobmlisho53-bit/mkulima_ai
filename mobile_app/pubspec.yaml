@@ -1,7 +1,7 @@
 name: mkulima_ai
 description: AI-Powered Plant Disease Detection Mobile App
 version: 1.0.0+1
-publish_to: 'none'  # Remove if you plan to publish to pub.dev
+publish_to: 'none'  # Remove if publishing to pub.dev
 
 environment:
   sdk: ">=3.6.0 <4.0.0"
@@ -30,7 +30,7 @@ dependencies:
   dio: ^5.3.2
   retrofit: ^4.0.1
 
-  # Local Storage
+  # Local Storage (Hive adapters must be manual now)
   shared_preferences: ^2.2.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -110,10 +110,16 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   mockito: ^5.6.1
 
+  # Code generation
   build_runner: ^2.10.4
   retrofit_generator: ^10.2.1
   freezed: ^3.2.3
-  json_serializable: 6.10.0
+  json_serializable: 6.10.0   # pinned to avoid analyzer conflict with Freezed 3.2.3
+
+flutter:
+  uses-material-design: true
+  generate: true  # ARB files / codegen
+
   assets:
     - assets/images/
     - assets/models/mkulima_ai_model.tflite
@@ -132,12 +138,3 @@ dev_dependencies:
           weight: 600
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
-
-  # iOS & Android plugin configuration (if needed for native plugins)
-  # plugin:
-  #   platforms:
-  #     android:
-  #       package: com.example.mkulima_ai
-  #       pluginClass: MkulimaAiPlugin
-  #     ios:
-  #       pluginClass: MkulimaAiPlugin
