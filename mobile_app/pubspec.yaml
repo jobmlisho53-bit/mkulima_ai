@@ -1,10 +1,10 @@
 name: mkulima_ai
 description: AI-Powered Plant Disease Detection Mobile App
 version: 1.0.0+1
+publish_to: 'none'  # Remove if you plan to publish to pub.dev
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.10.0"
+  sdk: ">=3.6.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -83,8 +83,8 @@ dependencies:
   # Internationalization
   flutter_localizations:
     sdk: flutter
-  flutter_localization: ^0.3.3  # Latest version of the lightweight Map-based localization package
-  intl: any  # Safest option: lets the Flutter SDK pin the exact compatible version (avoids conflicts)
+  flutter_localization: ^0.3.3
+  intl: any
 
   # QR Code & Barcode
   qr_flutter: ^4.1.0
@@ -117,6 +117,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true  # Enable if using official ARB files (gen-l10n); safe to keep even with flutter_localization
 
   assets:
     - assets/images/
@@ -137,11 +138,11 @@ flutter:
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
 
-  # iOS & Android plugin configuration
-  plugin:
-    platforms:
-      android:
-        package: com.example.mkulima_ai
-        pluginClass: MkulimaAiPlugin
-      ios:
-        pluginClass: MkulimaAiPlugin
+  # iOS & Android plugin configuration (if needed for native plugins)
+  # plugin:
+  #   platforms:
+  #     android:
+  #       package: com.example.mkulima_ai
+  #       pluginClass: MkulimaAiPlugin
+  #     ios:
+  #       pluginClass: MkulimaAiPlugin
