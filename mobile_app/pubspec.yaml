@@ -112,9 +112,9 @@ dev_dependencies:
 
   # Code generation
   build_runner: ^2.10.4
-  retrofit_generator: ^10.2.1
-  freezed: ^3.2.3
-  json_serializable: 6.10.0   # pinned to avoid analyzer conflict with Freezed 3.2.3
+  retrofit_generator: 10.1.0      # pinned to avoid analyzer conflict
+  freezed: 3.2.3
+  json_serializable: 6.11.2        # pinned to avoid analyzer conflict
 
 flutter:
   uses-material-design: true
