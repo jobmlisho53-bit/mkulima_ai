@@ -1,6 +1,6 @@
-// Riverpod provider for scan feature
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mkulima_ai/core/di/injector.dart'; // ADD THIS IMPORT
 import 'package:mkulima_ai/features/scan/domain/entities/scan_result.dart';
 import 'package:mkulima_ai/features/scan/domain/repositories/scan_repository.dart';
 
@@ -33,19 +33,25 @@ class ScanState {
 }
 
 class ScanNotifier extends StateNotifier<ScanState> {
-  final ScanRepository _repository;
+  late final ScanRepository _repository;
   
-  ScanNotifier(this._repository) : super(ScanState());
+  ScanNotifier() : super(ScanState()) {
+    // Get repository from dependency injection
+    _repository = getIt<ScanRepository>();
+  }
 
   bool get isModelLoaded => state.isModelLoaded;
 
   Future<void> initializeModel() async {
     try {
-      state = state.copyWith(isLoading: true);
+      state = state.copyWith(isLoading: true, error: null);
       await _repository.initializeModel();
       state = state.copyWith(isModelLoaded: true, isLoading: false);
     } catch (e) {
-      state = state.copyWith(error: e.toString(), isLoading: false);
+      state = state.copyWith(
+        error: 'Failed to load AI model: $e',
+        isLoading: false,
+      );
     }
   }
 
@@ -55,7 +61,10 @@ class ScanNotifier extends StateNotifier<ScanState> {
       final result = await _repository.analyzeImage(imagePath);
       state = state.copyWith(result: result, isLoading: false);
     } catch (e) {
-      state = state.copyWith(error: e.toString(), isLoading: false);
+      state = state.copyWith(
+        error: 'Analysis failed: $e',
+        isLoading: false,
+      );
     }
   }
 
@@ -68,7 +77,7 @@ class ScanNotifier extends StateNotifier<ScanState> {
         await analyzeImage(pickedFile.path);
       }
     } catch (e) {
-      state = state.copyWith(error: e.toString());
+      state = state.copyWith(error: 'Gallery error: $e');
     }
   }
 
@@ -81,7 +90,7 @@ class ScanNotifier extends StateNotifier<ScanState> {
   }
 }
 
+// Provider
 final scanProvider = StateNotifierProvider<ScanNotifier, ScanState>((ref) {
-  final repository = ref.watch(scanRepositoryProvider);
-  return ScanNotifier(repository);
+  return ScanNotifier();
 });
