@@ -13,6 +13,10 @@ jobs:
     name: Build APK
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: mobile_app  # Make sure all commands run from mobile_app
+
     steps:
       # 1. Checkout repository
       - name: Checkout repository
@@ -20,28 +24,25 @@ jobs:
 
       # 2. Setup Flutter
       - name: Setup Flutter
-        uses: subosito/flutter-action@v3
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.13.7'
 
-      # 3. Enable flutter on PATH
+      # 3. Run Flutter doctor
       - name: Flutter doctor
-        run: flutter doctor
-        working-directory: mobile_app
+        run: flutter doctor -v
 
       # 4. Install dependencies
       - name: Install dependencies
         run: flutter pub get
-        working-directory: mobile_app
 
       # 5. Build APK
-      - name: Build APK
+      - name: Build Release APK
         run: flutter build apk --release
-        working-directory: mobile_app
 
-      # 6. Upload APK as artifact
+      # 6. Upload APK artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: mkulima_ai-release-apk
-          path: mobile_app/build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
