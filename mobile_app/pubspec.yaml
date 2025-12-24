@@ -4,7 +4,7 @@ version: 1.0.0+1
 publish_to: 'none'  # Remove if you plan to publish to pub.dev
 
 environment:
-  sdk: ">=3.1.3
+  sdk: ">=3.6.0 <4.0.0"
 
 dependencies:
   flutter:
