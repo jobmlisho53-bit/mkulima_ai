@@ -89,7 +89,7 @@ dependencies:
   
   # QR Code
   qr_flutter: ^4.0.0
-  barcode_scan2: ^5.0.1
+  barcode_scan2: ^4.2.1
   
   # PDF Generation
   pdf: ^3.10.2
