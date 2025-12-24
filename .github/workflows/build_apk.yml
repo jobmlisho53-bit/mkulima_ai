@@ -1,0 +1,47 @@
+name: Build Flutter APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_apk:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v3
+        with:
+          flutter-version: '3.13.7'
+
+      # 3. Enable flutter on PATH
+      - name: Flutter doctor
+        run: flutter doctor
+        working-directory: mobile_app
+
+      # 4. Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: mobile_app
+
+      # 5. Build APK
+      - name: Build APK
+        run: flutter build apk --release
+        working-directory: mobile_app
+
+      # 6. Upload APK as artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: mkulima_ai-release-apk
+          path: mobile_app/build/app/outputs/flutter-apk/app-release.apk
