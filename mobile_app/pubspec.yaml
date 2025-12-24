@@ -121,7 +121,8 @@ flutter:
   
   assets:
     - assets/images/
-    - assets/models/
+    - assets/models/mkulima_ai_model.tflite
+    - assets/models/class_labels.json
     - assets/animations/
     - assets/translations/
     - assets/fonts/
