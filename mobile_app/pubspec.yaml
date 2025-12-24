@@ -57,7 +57,7 @@ dependencies:
   # Authentication
   firebase_auth: ^4.7.1
   google_sign_in: ^6.1.5
-  sign_in_with_apple: ^6.2.0
+  sign_in_with_apple: ^7.0.1
 
   # Notifications
   flutter_local_notifications: ^15.1.0+1
