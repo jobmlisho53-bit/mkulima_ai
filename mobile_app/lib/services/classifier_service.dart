@@ -1,151 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/services.dart';
-import 'package:tflite_flutter/tflite_flutter.dart';
-import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
-
-class PredictionResult {
-  final String diseaseName;
-  final double confidence;
-  final double severity;
-  final String treatment;
-
-  PredictionResult({
-    required this.diseaseName,
-    required this.confidence,
-    required this.severity,
-    required this.treatment,
-  });
-}
-
-class ClassifierService {
-  static Interpreter? _interpreter;
-  static List<String> _labels = [];
-  static bool _isInitialized = false;
-
-  /// Initialize model and labels
-  static Future<void> loadModelAndLabels() async {
-    if (_isInitialized) return;
-
-    try {
-      print('📦 Loading ML model...');
-      
-      // Load labels from your JSON file
-      final labelsJson = await rootBundle.loadString('assets/models/class_labels.json');
-      final Map<String, dynamic> decoded = jsonDecode(labelsJson);
-      
-      // Convert map to list, sort by key
-      _labels = List.generate(decoded.length, (i) => decoded[i.toString()] ?? 'Unknown');
-      
-      print('📋 Loaded ${_labels.length} disease labels');
-      print('Labels: $_labels');
-
-      // Load TFLite model
-      final interpreterOptions = InterpreterOptions()
-        ..threads = 4
-        ..useNnApiForAndroid = true;
-
-      _interpreter = await Interpreter.fromAsset(
-        'assets/models/mkulima_ai_model.tflite',
-        options: interpreterOptions,
-      );
-
-      // Print model info
-      final inputShape = _interpreter!.getInputTensor(0).shape;
-      final outputShape = _interpreter!.getOutputTensor(0).shape;
-      
-      print('🤖 Model loaded successfully');
-      print('   Input shape: $inputShape');
-      print('   Output shape: $outputShape');
-      
-      _isInitialized = true;
-    } catch (e) {
-      print('❌ Error loading model: $e');
-      rethrow;
-    }
-  }
-
-  /// Preprocess image for model input
-  static TensorImage _preprocessImage(File imageFile) {
-    try {
-      final tensorImage = TensorImage.fromFile(imageFile);
-      
-      // Get model input shape (assuming [1, height, width, 3])
-      final inputShape = _interpreter!.getInputTensor(0).shape;
-      final inputHeight = inputShape[1];
-      final inputWidth = inputShape[2];
-      
-      print('🖼️ Preprocessing image to $inputWidth×$inputHeight');
-
-      // Resize and normalize image
-      final imageProcessor = ImageProcessorBuilder()
-        .add(ResizeOp(inputHeight, inputWidth, ResizeMethod.BILINEAR))
-        .add(NormalizeOp(0, 255)) // Normalize to [0, 1]
-        .build();
-
-      return imageProcessor.process(tensorImage);
-    } catch (e) {
-      print('❌ Error preprocessing image: $e');
-      rethrow;
-    }
-  }
-
-  /// Run prediction on image
-  static Future<PredictionResult> predict(String imagePath) async {
-    if (!_isInitialized) {
-      await loadModelAndLabels();
-    }
-
-    try {
-      final imageFile = File(imagePath);
-      
-      if (!imageFile.existsSync()) {
-        throw Exception('Image file not found: $imagePath');
-      }
-
-      print('🔬 Running inference on image...');
-      
-      // Preprocess image
-      final inputTensor = _preprocessImage(imageFile);
-      
-      // Prepare output buffer
-      final outputShape = _interpreter!.getOutputTensor(0).shape;
-      final outputType = _interpreter!.getOutputTensor(0).type;
-      final outputBuffer = TensorBuffer.createFixedSize(outputShape, outputType);
-      
-      // Run inference
-      _interpreter!.run(inputTensor.buffer, outputBuffer.buffer);
-      
-      // Get probabilities
-      final probabilities = outputBuffer.getDoubleList();
-      
-      // Find max probability and index
-      double maxProb = 0;
-      int maxIndex = 0;
-      
-      for (int i = 0; i < probabilities.length; i++) {
-        if (probabilities[i] > maxProb) {
-          maxProb = probabilities[i];
-          maxIndex = i;
-        }
-      }
-      
-      // Get predicted label
-      final predictedLabel = _labels.length > maxIndex 
-          ? _labels[maxIndex] 
-          : 'Unknown Disease';
-      
-      print('🎯 Prediction: $predictedLabel (${(maxProb * 100).toStringAsFixed(1)}%)');
-      print('   All probabilities: $probabilities');
-
-      // Get treatment
-      final treatment = _getTreatment(predictedLabel, maxProb);
-      
-      return PredictionResult(
-        diseaseName: predictedLabel,
-        confidence: maxProb,
-        severity: maxProb, // Using confidence as severity for now
-        treatment: tre/*
+/*
  * Mkulima AI - Classifier Service
  * TensorFlow Lite ML Model Integration
  */
@@ -345,10 +198,9 @@ class ClassifierService {
       final outputShape = _interpreter!.getOutputTensor(0).shape;
       
       // Create dummy input
-      final dummyInput = List.filled(
-        inputShape.reduce((a, b) => a * b),
-        0.5,
-      ).reshape(inputShape);
+      final totalElements = inputShape.reduce((a, b) => a * b);
+      final dummyInput = List<double>.filled(totalElements, 0.5);
+      final reshapedInput = dummyInput.reshape(inputShape);
       
       // Prepare output buffer
       final outputBuffer = TensorBuffer.createFixedSize(
@@ -357,7 +209,7 @@ class ClassifierService {
       );
       
       // Run inference
-      _interpreter!.run(dummyInput, outputBuffer.buffer);
+      _interpreter!.run(reshapedInput, outputBuffer.buffer);
       
       debugPrint('🧪 Model test passed');
       debugPrint('   Input shape: $inputShape');
@@ -550,14 +402,21 @@ class ClassifierService {
         .trim();
     
     // Return specific treatment or generic advice
-    return treatments[diseaseName] ??
-        treatments.entries.firstWhere(
-          (entry) => formattedName.contains(entry.key.split('_').first),
-          orElse: () => MapEntry('', 
-              'For ${confidence > 0.7 ? "severe" : "mild"} infection: '
-              'Remove affected leaves, improve air circulation, '
-              'and consult local agricultural extension officer.')
-        ).value;
+    if (treatments.containsKey(diseaseName)) {
+      return treatments[diseaseName]!;
+    }
+    
+    // Try to find partial match
+    for (final entry in treatments.entries) {
+      if (formattedName.contains(entry.key.split('_').first)) {
+        return entry.value;
+      }
+    }
+    
+    // Generic fallback
+    return 'For ${confidence > 0.7 ? "severe" : "mild"} infection: '
+        'Remove affected leaves, improve air circulation, '
+        'and consult local agricultural extension officer.';
   }
 
   /// Get all available disease labels
