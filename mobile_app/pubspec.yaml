@@ -67,7 +67,7 @@ dependencies:
   syncfusion_flutter_charts: ^32.1.20
 
   # Connectivity
-  connectivity_plus: ^7.0.0
+  connectivity_plus: ^6.1.1
   internet_connection_checker: ^3.0.0
 
   # Internationalization
