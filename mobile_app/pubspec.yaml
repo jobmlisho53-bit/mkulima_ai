@@ -26,7 +26,7 @@ dependencies:
 
   # Networking
   http: 1.1.0
-  dio: 5.8.0
+  dio: 5.9.0
 
   # Storage
   shared_preferences: 2.2.2
