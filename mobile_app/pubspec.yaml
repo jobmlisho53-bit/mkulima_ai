@@ -37,7 +37,6 @@ dependencies:
   # Camera & Image
   camera: ^0.9.4+5
   image_picker: ^1.1.1
-  # image_cropper: ^4.0.1
   image_gallery_saver: ^2.0.3
 
   # ML & TensorFlow Lite
@@ -59,7 +58,6 @@ dependencies:
   sign_in_with_apple: ^7.0.1
 
   # Notifications
-  # flutter_local_notifications: ^19.5.0
   firebase_messaging: ^16.1.0
 
   # Charts
@@ -71,17 +69,11 @@ dependencies:
   internet_connection_checker: ^3.0.0
 
   # Internationalization
-  # flutter_localizations:
-  #   sdk: flutter
-  # flutter_localization: ^0.3.3
   intl: any
 
   # QR Code & Barcode
   qr_flutter: ^4.1.0
   barcode_scan2: ^4.6.0
-
-  # Social Sharing
-  # share_plus: ^12.0.1
 
   # Analytics & Crash Reporting
   firebase_analytics: ^12.0.1
@@ -97,9 +89,9 @@ dev_dependencies:
 
   # Code generation
   build_runner: ^2.1.11
-  retrofit_generator: ^10.1.0
+  retrofit_generator: ^10.0.3     # Compatible with freezed & source_gen
   json_serializable: ^6.9.4
-  freezed: ^2.5.7
+  freezed: ^2.5.7                 # Compatible with retrofit_generator ^10.0.3
   hive_generator: ^2.0.0
 
 flutter:
