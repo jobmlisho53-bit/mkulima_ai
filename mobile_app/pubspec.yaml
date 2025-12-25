@@ -1,95 +1,104 @@
-name: mkulima_ai
-description: AI-Powered Plant Disease Detection Mobile App
-version: 1.0.0+1
-publish_to: 'none'
-
-environment:
-  sdk: ">=3.6.0 <4.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
 
-  # UI & Core
-  cupertino_icons: 1.0.6
-  flutter_svg: 2.0.9
-  lottie: 2.7.0
-  animated_text_kit: 4.2.2
-  animations: 2.0.8
+  # State Management
+  provider: ^6.0.5
+  riverpod: ^2.3.6
 
-  # State management
-  provider: 6.1.2
-  riverpod: 2.5.1
+  # UI
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.7
+  lottie: ^2.7.0
+  animated_text_kit: ^4.2.2
+  animations: ^2.0.7
 
   # Navigation
-  go_router: 13.2.0
+  go_router: ^12.0.0
+  auto_route: ^7.0.0
 
-  # Networking
-  http: 1.1.0
-  dio: 5.9.0
+  # Networking / API
+  dio: ^5.4.0                  # Exists and compatible
+  retrofit: ^4.0.1
 
-  # Storage
-  shared_preferences: 2.2.2
-  hive: 2.2.3
-  hive_flutter: 1.1.0
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.0
 
-  # Camera & Media (MOBILE)
-  camera: 0.10.5+9
-  image_picker: 1.1.2
-  image_cropper: 7.1.0
-  image_gallery_saver: 2.0.3
+  # ML / TensorFlow Lite
+  tflite_flutter: ^0.9.0
+  tflite_flutter_helper: ^0.3.1
 
-  # ML (LOCKED & COMPATIBLE)
-  tflite_flutter: 0.9.0
-  tflite_flutter_helper: 0.3.1
+  # Camera & Image
+  camera: ^0.10.5+3
+  image_picker: ^1.1.1
+  image_cropper: ^4.0.1
+  image_gallery_saver: ^2.0.3
 
   # Maps & Location
-  google_maps_flutter: 2.6.1
-  geolocator: 10.1.0
-  geocoding: 2.2.0
+  google_maps_flutter: ^2.14.0
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
 
-  # Auth
-  firebase_auth: 4.17.8
-  google_sign_in: 6.2.1
-  sign_in_with_apple: 6.1.1
+  # Voice & Speech
+  flutter_tts: ^4.2.3
+  speech_to_text: ^7.3.0
+
+  # Auth & Social
+  firebase_auth: ^6.1.3
+  google_sign_in: ^7.2.0
+  sign_in_with_apple: ^7.0.1
+  share_plus: ^12.0.1
 
   # Notifications
-  firebase_messaging: 14.7.10
-  flutter_local_notifications: 17.2.3
+  flutter_local_notifications: ^19.5.0
+  firebase_messaging: ^16.1.0
 
-  # Charts
-  fl_chart: 0.68.0
+  # Charts / PDF
+  fl_chart: ^1.1.1
+  syncfusion_flutter_charts: ^32.1.20
+  pdf: ^3.11.3
+  printing: ^5.14.2
 
-  # Forms
-  flutter_form_builder: 9.3.0
+  # Connectivity
+  connectivity_plus: ^7.0.0
+  internet_connection_checker: ^3.0.0
 
-  # Files & permissions
-  path_provider: 2.1.3
-  file_picker: 8.1.2
-  permission_handler: 11.3.1
+  # Internationalization
+  flutter_localizations:
+    sdk: flutter
+  flutter_localization: ^0.3.3
+  intl: any
 
-  # Intl
-  intl: 0.19.0
+  # QR & Barcode
+  qr_flutter: ^4.1.0
+  barcode_scan2: ^4.6.0
+
+  # Analytics & Crashlytics
+  firebase_analytics: ^12.0.1
+  firebase_crashlytics: ^5.0.6
+
+  # Ads
+  google_mobile_ads: ^7.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: 4.0.0
-
-  # 🔒 CODE GENERATION — LOCKED (NO MORE CONFLICTS)
-  build_runner: 2.4.8
-  freezed: 2.5.7
-  json_serializable: 6.9.4
-  hive_generator: 2.0.0
-  retrofit_generator: 10.1.0
+  flutter_lints: ^6.0.0
+  build_runner: ^2.10.4
+  retrofit_generator: ^9.1.0       # Compatible with dio ^5.4.0
+  json_serializable: ^6.9.4
+  freezed: ^2.5.7                  # Compatible with hive_generator ^2.0.0
+  hive_generator: ^2.0.0
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/images/
-    - assets/models/
+    - assets/models/mkulima_ai_model.tflite
+    - assets/models/class_labels.json
     - assets/animations/
     - assets/translations/
     - assets/fonts/
