@@ -34,10 +34,10 @@ dependencies:
   hive_flutter: ^1.1.0
   shared_preferences: ^2.2.0
 
-  # Camera & Image
-  camera: ^0.9.4+5   # Downgraded to match tflite_flutter_helper
+  # Camera & Image (temporarily disable image_cropper to avoid http conflict)
+  camera: ^0.9.4+5
   image_picker: ^1.1.1
-  image_cropper: ^4.0.1
+  # image_cropper: ^4.0.1
   image_gallery_saver: ^2.0.3
 
   # ML & TensorFlow Lite
@@ -58,7 +58,7 @@ dependencies:
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
 
-  # Notifications (temporarily disabled to avoid ffi conflict)
+  # Notifications (temporarily disabled due to ffi conflict)
   # flutter_local_notifications: ^19.5.0
   firebase_messaging: ^16.1.0
 
