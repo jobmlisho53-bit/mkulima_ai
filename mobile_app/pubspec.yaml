@@ -4,95 +4,116 @@ version: 1.0.0+1
 publish_to: 'none'
 
 environment:
-  sdk: '>=3.10.0 <4.0.0'
+  sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
   # State Management
-  provider: ^6.0.5
-  riverpod: ^2.3.6
+  provider: any
+  riverpod: any
 
   # UI Components
-  cupertino_icons: ^1.0.6
-  flutter_svg: ^2.0.7
-  lottie: ^2.7.0
-  animated_text_kit: ^4.2.2
-  animations: ^2.0.7
+  cupertino_icons: any
+  flutter_svg: any
+  lottie: any
+  animated_text_kit: any
+  animations: any
 
   # Navigation & Routing
-  go_router: ^12.0.0
-  auto_route: ^7.0.0
+  go_router: any
+  auto_route: any
 
   # HTTP & API
-  dio: ^5.9.0
-  retrofit: ^4.0.1
+  http: any
+  dio: any
+  retrofit: any
 
   # Local Storage
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  shared_preferences: ^2.2.0
+  shared_preferences: any
+  hive: any
+  hive_flutter: any
 
-  # Camera & Image
-  camera: ^0.9.4+5
-  image_picker: ^1.1.1
-  image_gallery_saver: ^2.0.3
+  # Camera & Image Processing
+  camera: any
+  image_picker: any
+  image_cropper: any
+  image_gallery_saver: any
 
   # ML & TensorFlow Lite
-  tflite_flutter: ^0.9.0
-  tflite_flutter_helper: ^0.3.1
+  tflite_flutter: any
+  tflite_flutter_helper: any
 
   # Maps & Location
-  google_maps_flutter: ^2.14.0
-  geolocator: ^14.0.2
-  geocoding: ^4.0.0
+  google_maps_flutter: any
+  geolocator: any
+  geocoding: any
 
   # Voice & Speech
-  flutter_tts: ^4.2.3
-  speech_to_text: ^7.3.0
+  flutter_tts: any
+  speech_to_text: any
 
   # Authentication
-  firebase_auth: ^6.1.3
-  google_sign_in: ^7.2.0
-  sign_in_with_apple: ^7.0.1
+  firebase_auth: any
+  google_sign_in: any
+  sign_in_with_apple: any
 
   # Notifications
-  firebase_messaging: ^16.1.0
+  flutter_local_notifications: any
+  firebase_messaging: any
 
-  # Charts
-  fl_chart: ^1.1.1
-  syncfusion_flutter_charts: ^32.1.20
+  # Charts & Visualization
+  fl_chart: any
+  syncfusion_flutter_charts: any
+
+  # Form Validation
+  form_validator: any
+  flutter_form_builder: any
 
   # Connectivity
-  connectivity_plus: ^6.1.1
-  internet_connection_checker: ^3.0.0
+  connectivity_plus: any
+  internet_connection_checker: any
+
+  # File & Storage
+  path_provider: any
+  file_picker: any
+  permission_handler: any
 
   # Internationalization
+  flutter_localizations:
+    sdk: flutter
+  flutter_localization: any
   intl: any
 
   # QR Code & Barcode
-  qr_flutter: ^4.1.0
-  barcode_scan2: ^4.6.0
+  qr_flutter: any
+  barcode_scan2: any
+
+  # PDF Generation
+  pdf: any
+  printing: any
+
+  # Social Sharing
+  share_plus: any
 
   # Analytics & Crash Reporting
-  firebase_analytics: ^12.0.1
-  firebase_crashlytics: ^5.0.6
+  firebase_analytics: any
+  firebase_crashlytics: any
 
   # Ads
-  google_mobile_ads: ^7.0.0
+  google_mobile_ads: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
-
-  # Code generation
-  build_runner: ^2.1.11
-  retrofit_generator: ^10.0.3     # Compatible with freezed & source_gen
-  json_serializable: ^6.9.4
-  freezed: ^2.5.7                 # Compatible with retrofit_generator ^10.0.3
-  hive_generator: ^2.0.0
+  flutter_lints: any
+  mockito: any
+  build_runner: any
+  retrofit_generator: any
+  hive_generator: any
+  json_serializable: any
+  freezed: any
 
 flutter:
   uses-material-design: true
