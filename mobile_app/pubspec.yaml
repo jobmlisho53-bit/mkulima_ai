@@ -65,7 +65,7 @@ dependencies:
   # Charts & PDF
   fl_chart: ^1.1.1
   syncfusion_flutter_charts: ^32.1.20
-  pdf: ^3.11.3
+  pdf: ^3.9.0
   printing: ^5.14.2
 
   # Connectivity
