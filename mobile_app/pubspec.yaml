@@ -40,8 +40,8 @@ dependencies:
   image_gallery_saver: 2.0.3
 
   # ML (LOCKED & COMPATIBLE)
-  tflite_flutter: 0.10.4
-  tflite_flutter_helper: 0.4.1
+  tflite_flutter: 0.9.0
+  tflite_flutter_helper: 0.3.1
 
   # Maps & Location
   google_maps_flutter: 2.6.1
