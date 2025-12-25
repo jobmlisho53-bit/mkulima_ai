@@ -34,7 +34,7 @@ dependencies:
   hive_flutter: ^1.1.0
   shared_preferences: ^2.2.0
 
-  # Camera & Image (temporarily disable image_cropper to avoid http conflict)
+  # Camera & Image
   camera: ^0.9.4+5
   image_picker: ^1.1.1
   # image_cropper: ^4.0.1
@@ -58,7 +58,7 @@ dependencies:
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
 
-  # Notifications (temporarily disabled due to ffi conflict)
+  # Notifications
   # flutter_local_notifications: ^19.5.0
   firebase_messaging: ^16.1.0
 
@@ -70,7 +70,7 @@ dependencies:
   connectivity_plus: ^7.0.0
   internet_connection_checker: ^3.0.0
 
-  # Internationalization (temporarily disabled)
+  # Internationalization
   # flutter_localizations:
   #   sdk: flutter
   # flutter_localization: ^0.3.3
@@ -80,7 +80,7 @@ dependencies:
   qr_flutter: ^4.1.0
   barcode_scan2: ^4.6.0
 
-  # Social Sharing (temporarily disabled)
+  # Social Sharing
   # share_plus: ^12.0.1
 
   # Analytics & Crash Reporting
@@ -96,7 +96,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
 
   # Code generation
-  build_runner: ^2.10.4
+  build_runner: ^2.1.11
   retrofit_generator: ^10.1.0
   json_serializable: ^6.9.4
   freezed: ^2.5.7
