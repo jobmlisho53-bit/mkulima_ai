@@ -1,3 +1,11 @@
+name: mkulima_ai
+description: AI-Powered Plant Disease Detection Mobile App
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.10.0 <4.0.0'
+
 dependencies:
   flutter:
     sdk: flutter
@@ -6,19 +14,19 @@ dependencies:
   provider: ^6.0.5
   riverpod: ^2.3.6
 
-  # UI
+  # UI Components
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.7
   lottie: ^2.7.0
   animated_text_kit: ^4.2.2
   animations: ^2.0.7
 
-  # Navigation
+  # Navigation & Routing
   go_router: ^12.0.0
   auto_route: ^7.0.0
 
-  # Networking / API
-  dio: ^5.4.0                  # Exists and compatible
+  # HTTP & API
+  dio: ^5.4.0              # Stable version compatible with retrofit_generator
   retrofit: ^4.0.1
 
   # Local Storage
@@ -26,15 +34,15 @@ dependencies:
   hive_flutter: ^1.1.0
   shared_preferences: ^2.2.0
 
-  # ML / TensorFlow Lite
-  tflite_flutter: ^0.9.0
-  tflite_flutter_helper: ^0.3.1
-
   # Camera & Image
   camera: ^0.10.5+3
   image_picker: ^1.1.1
   image_cropper: ^4.0.1
   image_gallery_saver: ^2.0.3
+
+  # ML & TensorFlow Lite
+  tflite_flutter: ^0.9.0
+  tflite_flutter_helper: ^0.3.1
 
   # Maps & Location
   google_maps_flutter: ^2.14.0
@@ -45,17 +53,16 @@ dependencies:
   flutter_tts: ^4.2.3
   speech_to_text: ^7.3.0
 
-  # Auth & Social
+  # Authentication
   firebase_auth: ^6.1.3
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
-  share_plus: ^12.0.1
 
   # Notifications
   flutter_local_notifications: ^19.5.0
   firebase_messaging: ^16.1.0
 
-  # Charts / PDF
+  # Charts & PDF
   fl_chart: ^1.1.1
   syncfusion_flutter_charts: ^32.1.20
   pdf: ^3.11.3
@@ -71,11 +78,14 @@ dependencies:
   flutter_localization: ^0.3.3
   intl: any
 
-  # QR & Barcode
+  # QR Code & Barcode
   qr_flutter: ^4.1.0
   barcode_scan2: ^4.6.0
 
-  # Analytics & Crashlytics
+  # Social Sharing
+  share_plus: ^12.0.1
+
+  # Analytics & Crash Reporting
   firebase_analytics: ^12.0.1
   firebase_crashlytics: ^5.0.6
 
@@ -86,14 +96,17 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+
+  # Code generation
   build_runner: ^2.10.4
-  retrofit_generator: ^9.1.0       # Compatible with dio ^5.4.0
+  retrofit_generator: ^10.1.0   # Compatible with dio ^5.4.0
   json_serializable: ^6.9.4
-  freezed: ^2.5.7                  # Compatible with hive_generator ^2.0.0
+  freezed: ^2.5.7
   hive_generator: ^2.0.0
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/images/
