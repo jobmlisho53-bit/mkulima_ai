@@ -26,7 +26,7 @@ dependencies:
   auto_route: ^7.0.0
 
   # HTTP & API
-  dio: ^5.4.0
+  dio: ^5.9.0
   retrofit: ^4.0.1
 
   # Local Storage
@@ -35,7 +35,7 @@ dependencies:
   shared_preferences: ^2.2.0
 
   # Camera & Image
-  camera: ^0.9.4+5
+  camera: ^0.9.4+5   # Downgraded to match tflite_flutter_helper
   image_picker: ^1.1.1
   image_cropper: ^4.0.1
   image_gallery_saver: ^2.0.3
@@ -58,8 +58,8 @@ dependencies:
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^7.0.1
 
-  # Notifications
-  flutter_local_notifications: ^19.5.0
+  # Notifications (temporarily disabled to avoid ffi conflict)
+  # flutter_local_notifications: ^19.5.0
   firebase_messaging: ^16.1.0
 
   # Charts
@@ -70,7 +70,7 @@ dependencies:
   connectivity_plus: ^7.0.0
   internet_connection_checker: ^3.0.0
 
-  # Internationalization (temporarily comment out to avoid conflict)
+  # Internationalization (temporarily disabled)
   # flutter_localizations:
   #   sdk: flutter
   # flutter_localization: ^0.3.3
@@ -80,7 +80,7 @@ dependencies:
   qr_flutter: ^4.1.0
   barcode_scan2: ^4.6.0
 
-  # Social Sharing (temporarily comment out to avoid conflict)
+  # Social Sharing (temporarily disabled)
   # share_plus: ^12.0.1
 
   # Analytics & Crash Reporting
