@@ -35,7 +35,7 @@ dependencies:
   shared_preferences: ^2.2.0
 
   # Camera & Image
-  camera: ^0.10.5+3
+  camera: ^0.9.4+5
   image_picker: ^1.1.1
   image_cropper: ^4.0.1
   image_gallery_saver: ^2.0.3
